@@ -3,11 +3,19 @@
  */
 package com.seefusion;
 
+import java.util.TimeZone;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 /**
  * @author Daryl
  *
  */
 class SmtpMessage {
+
+	String smtpDate;
 
 	String smtpFrom;
 	
@@ -118,5 +126,22 @@ class SmtpMessage {
 		this.contentType = contentType;
 	}
 
+	/**
+	 * @return Returns the smtpDate.
+	 */
+	String getSmtpDate() {
+		return this.smtpDate;
+	}
+
+	/**
+	 * @param smtpDate The smtpDate to set.
+	 */
+	void setSmtpDate(String smtpDate) {
+		TimeZone serverTimeZone = TimeZone.getDefault();
+		ZoneId serverZoneId = serverTimeZone.toZoneId();
+		ZonedDateTime currentTimeInServerZone = ZonedDateTime.now(serverZoneId);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH);
+		this.smtpDate = currentTimeInServerZone.format(formatter);
+	}
 	
 }

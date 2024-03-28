@@ -225,6 +225,7 @@ class SmtpSender extends SeeTask {
 		}
 
 		// send message
+		out.print("Date: " + message.smtpDate + CRLF);
 		out.print("From: " + message.smtpFrom + CRLF);
 		out.print("To: " + message.smtpTo + CRLF);
 		out.print("Subject: " + message.smtpSubject + CRLF);

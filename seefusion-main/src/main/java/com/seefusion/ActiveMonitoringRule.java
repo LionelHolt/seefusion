@@ -613,6 +613,7 @@ abstract class ActiveMonitoringRule {
 		}
 		// do notify
 		SmtpMessage msg = new SmtpMessage();
+		msg.setSmtpDate();
 		msg.setSmtpFrom(this.smtpFrom);
 		msg.setSmtpTo(this.smtpTo);
 		msg.setContentType("text/html; charset=\"UTF-8\"");
